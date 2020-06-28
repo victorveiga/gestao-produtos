@@ -1,8 +1,7 @@
 # gestao-produtos
-Primeiro projeto utilizando os frameworks Django e Bootstrap
-
-### Developer: Victor Veiga
-### Data: 28/06/2020
+Primeiro projeto utilizando os frameworks Django e Bootstrap  
+Developer: Victor Veiga  
+Data: 28/06/2020  
 
 ![Imagem de home page](https://github.com/victorveiga/gestao-produtos/blob/master/statics/img/home.png)
 
