@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap %}
+
+{% block main %}
+
+    <script>
+        function AbrirDialogoExclusao(param) {
+            $('#form-confirm-delete').attr('action', param)
+            $('#modalConfirmExclusao').modal('show')
+        }
+    </script>
+
+    <div class="row">
+        <div id="produtos" class="col-12">
+            <div id="botoes-up" class="row mt-5">
+                <a href="{% url 'create_produto' %}">
+                    <button class="btn btn-outline-info">Adicionar</button>
+                </a>
+            </div>
+            <table class="table table-striped mt-2">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Código Barras</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Preço Venda</th>
+                    <th scope="col">Editar</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+
+                    {% for produto in produtos %}
+                        <tr>
+                            <th scope="row">{{produto.id}}</th>
+                            <td>{{produto.codigoBarras}}</td>
+                            <td>{{produto.descricao}}</td>
+                            <td>{{produto.precoVenda}}</td>
+                            <td>
+                                <a href="{% url 'update_produto' produto.id %}"><button class="btn btn-outline-info">Editar</button></a>
+                            </td>
+                            <th>
+                                <button class="btn btn-outline-danger" onclick="AbrirDialogoExclusao('{% url 'delete_produto' produto.id %}')">Excluir</button>
+                            </th>
+                        </tr>
+                    {% endfor %}
+                  
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+    <div id="modalConfirmExclusao" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Confirmação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                    <p>Tem certeza que deseja remover o registro?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form id="form-confirm-delete" action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
