@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from produtos import urls as produtos_urls
-from .views import index as home, logout_now
+from .views import index as home, logout_now, sigin
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -26,4 +26,5 @@ urlpatterns = [
     path('produtos/', include(produtos_urls), name='produtos'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', logout_now, name='logout'),
+    path('register/', sigin, name='register'),
 ]
