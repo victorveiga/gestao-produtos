@@ -20,8 +20,10 @@
                 </div>
                 <hr>
                 <button type="submit" class="btn btn-info mt-2">Salvar</button>
+                {% if form.instance.id > 0 %}
+                    <button type="button" class="btn btn-danger mt-2" onclick="AbrirDialogoExclusao('{% url 'delete_produto' form.instance.id %}')">Excluir</button>
+                {% endif %}
             </form>
-            <button class="btn btn-danger" onclick="AbrirDialogoExclusao('{% url 'delete_produto' form.instance.id %}')">Excluir</button>
         </div>
     </div>
 
